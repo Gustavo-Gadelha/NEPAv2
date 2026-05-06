@@ -1,0 +1,38 @@
+services:
+  api:
+    build: .
+    container_name: flask_app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+    develop:
+      # https://docs.astral.sh/uv/guides/integration/docker/#configuring-watch-with-docker-compose
+      watch:
+        - action: sync
+          path: .
+          target: /app
+          ignore:
+            - .venv/
+
+        - action: rebuild
+          path: ./uv.lock
+
+  database:
+    image: postgres:18
+    container_name: postgres_db
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: [ "CMD-SHELL", "sh -c 'pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}'" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+volumes:
+  postgres_data:

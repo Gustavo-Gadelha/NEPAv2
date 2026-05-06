@@ -1,0 +1,50 @@
+target-version = "py314"
+line-length = 120
+
+select = [
+    "E", # pycodestyle errors
+    "F", # pyflakes
+    "N", # pep8-naming
+    "I", # isort
+    "B", # bugbear
+    "C4", # comprehensions
+    "UP", # pyupgrade
+    "ARG", # unused arguments
+    "RUF", # ruff
+    "SIM", # simplifications
+]
+
+# Ignore rules that are often noisy in Flask apps
+ignore = [
+    "E501", # line too long (handled by formatter)
+    "B008", # function calls in defaults (common in some Flask patterns)
+    "ARG001", # unused function arguments (e.g., request handlers)
+]
+
+# Allow unused variables that start with underscore
+dummy-variable-rgx = "^_.*"
+
+# Exclude common folders
+exclude = [
+    ".git",
+    ".venv",
+    "venv",
+    "__pycache__",
+    "migrations",
+    "build",
+    "dist",
+]
+
+[lint.isort]
+known-first-party = ["app"]
+combine-as-imports = true
+
+[lint.per-file-ignores]
+# __init__.py often has unused imports for package exports
+"__init__.py" = ["F401"]
+# Test files often have different patterns
+"tests/*" = ["ARG", "S101"]
+
+[format]
+quote-style = "single"
+indent-style = "space"
