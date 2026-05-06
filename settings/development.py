@@ -7,10 +7,13 @@ SECRET_KEY = env.str('SECRET_KEY', default='dev-secret-key')
 SECRET_KEY_FALLBACKS = env.list('SECRET_KEY_FALLBACKS', default=[])
 
 SERVER_NAME = env.str('SERVER_NAME', default=None)
-TRUSTED_HOSTS = env.list('TRUSTED_HOSTS', default=['*'])
+TRUSTED_HOSTS = env.list('TRUSTED_HOSTS', default=None)
 
 MAX_CONTENT_LENGTH = env.int('MAX_CONTENT_LENGTH', default=16 * 1024 * 1024)  # 16MB
 
 SQLALCHEMY_DATABASE_URI = env.str('SQLALCHEMY_DATABASE_URI', default='sqlite:///sqlite3.db')
+SQLALCHEMY_ECHO = env.bool('SQLALCHEMY_ECHO', default=True)
+SQLALCHEMY_RECORD_QUERIES = env.bool('SQLALCHEMY_RECORD_QUERIES', default=False)
+SQLALCHEMY_TRACK_MODIFICATIONS = env.bool('SQLALCHEMY_TRACK_MODIFICATIONS', default=False)
 
 LOG_LEVEL = 'DEBUG'
