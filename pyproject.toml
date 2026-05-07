@@ -12,6 +12,7 @@ dependencies = [
     "psycopg[binary,pool]>=3.3.4",
     "py-healthcheck>=1.10.1",
     "python-dotenv>=1.2.2",
+    "sentry-sdk[flask]>=2.59.0",
     "waitress>=3.0.2",
     "watchdog>=6.0.0",
 ]

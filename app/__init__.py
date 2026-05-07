@@ -6,6 +6,7 @@ from flask_cors import CORS
 
 from app.extensions import init_extensions
 from app.healthcheck import register_healthcheck
+from app.sentry import init_sentry
 
 load_dotenv()
 
@@ -25,5 +26,7 @@ def create_app(settings_module: str = ''):
 
     init_extensions(app)
     register_healthcheck(app)
+
+    init_sentry()
 
     return app
