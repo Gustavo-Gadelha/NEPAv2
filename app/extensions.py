@@ -1,5 +1,6 @@
 from flask import Flask, request
 from flask_cors import CORS
+from flask_mail import Mail
 from flask_migrate import Migrate
 from flask_seasurf import SeaSurf
 from flask_sqlalchemy import SQLAlchemy
@@ -16,6 +17,8 @@ cors = CORS()
 csrf = SeaSurf()
 talisman = Talisman()
 
+mail = Mail()
+
 
 def init_extensions(app: Flask):
     db.init_app(app)
@@ -24,3 +27,5 @@ def init_extensions(app: Flask):
     cors.init_app(app)
     csrf.init_app(app)
     talisman.init_app(app, content_security_policy=False)
+
+    mail.init_app(app)

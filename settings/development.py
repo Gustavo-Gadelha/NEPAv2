@@ -16,6 +16,16 @@ SQLALCHEMY_ECHO = env.bool('SQLALCHEMY_ECHO', default=True)
 SQLALCHEMY_RECORD_QUERIES = env.bool('SQLALCHEMY_RECORD_QUERIES', default=False)
 SQLALCHEMY_TRACK_MODIFICATIONS = env.bool('SQLALCHEMY_TRACK_MODIFICATIONS', default=False)
 
+MAIL_SERVER = env.str('MAIL_SERVER', default='localhost')
+MAIL_PORT = env.int('MAIL_PORT', default=25)
+MAIL_USERNAME = env.str('MAIL_USERNAME', default=None)
+MAIL_PASSWORD = env.str('MAIL_PASSWORD', default=None)
+
+MAIL_USE_TLS = env.bool('MAIL_USE_TLS', default=False)
+MAIL_USE_SSL = env.bool('MAIL_USE_SSL', default=False)
+
+MAIL_DEFAULT_SENDER = env.str('MAIL_DEFAULT_SENDER', default='noreply@localhost')
+
 CORS_ORIGINS = env.list('CORS_ORIGINS')
 CORS_RESOURCES = env.str('CORS_RESOURCES')
 CORS_SUPPORTS_CREDENTIALS = env.bool('CORS_SUPPORTS_CREDENTIALS', default=True)
