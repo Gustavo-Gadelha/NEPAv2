@@ -2,7 +2,6 @@ import os
 
 from dotenv import load_dotenv
 from flask import Flask
-from flask_cors import CORS
 
 from app.extensions import init_extensions
 from app.healthcheck import register_healthcheck

@@ -1,5 +1,7 @@
-from flask import Flask, request
+from flask import Flask
 from flask_cors import CORS
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 from flask_mail import Mail
 from flask_migrate import Migrate
 from flask_seasurf import SeaSurf
@@ -11,13 +13,12 @@ from app.database import Base
 db = SQLAlchemy(model_class=Base, disable_autonaming=True)
 migrate = Migrate()
 
-# See configuration reference:
-# https://flask-cors.readthedocs.io/en/latest/configuration.html#
 cors = CORS()
 csrf = SeaSurf()
 talisman = Talisman()
 
 mail = Mail()
+limiter = Limiter(get_remote_address)
 
 
 def init_extensions(app: Flask):
@@ -29,3 +30,4 @@ def init_extensions(app: Flask):
     talisman.init_app(app, content_security_policy=False)
 
     mail.init_app(app)
+    limiter.init_app(app)
