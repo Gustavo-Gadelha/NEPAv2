@@ -2,7 +2,6 @@ import logging
 
 import sentry_sdk
 from environs import env
-from flask import Flask
 from sentry_sdk.integrations.flask import FlaskIntegration
 
 logger = logging.getLogger(__name__)
