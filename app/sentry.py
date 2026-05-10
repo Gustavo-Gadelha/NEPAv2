@@ -1,20 +1,20 @@
 import logging
 
 import sentry_sdk
-from environs import env
+from flask import Flask
 from sentry_sdk.integrations.flask import FlaskIntegration
 
 logger = logging.getLogger(__name__)
 
 
-def init_sentry():
-    dsn = env.str('SENTRY_DSN', default=None)
+def init_sentry(app: Flask):
+    dsn = app.config.get('SENTRY_DSN')
 
     if not dsn:
         logger.info('SENTRY_DSN is not set, Sentry will not be initialized.')
         return
 
-    traces_sample_rate = env.float('SENTRY_TRACE_SAMPLE_RATES', default=0.1)
+    traces_sample_rate = app.config.get('SENTRY_TRACE_SAMPLE_RATES')
 
     sentry_sdk.init(
         dsn=dsn,
