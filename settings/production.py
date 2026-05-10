@@ -3,6 +3,8 @@ from environs import env
 DEBUG = False
 ENV = 'production'
 
+INSTALLED_FEATURES = []
+
 SECRET_KEY = env.str('SECRET_KEY')
 SECRET_KEY_FALLBACKS = env.list('SECRET_KEY_FALLBACKS', default=[])
 

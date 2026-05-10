@@ -3,6 +3,8 @@ from environs import env
 DEBUG = True
 ENV = 'development'
 
+INSTALLED_FEATURES = []
+
 SECRET_KEY = env.str('SECRET_KEY', default='dev-secret-key')
 SECRET_KEY_FALLBACKS = env.list('SECRET_KEY_FALLBACKS', default=[])
 
