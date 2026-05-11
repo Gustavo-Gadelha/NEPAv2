@@ -48,7 +48,7 @@ def create_feature(
     with_routes: bool,
 ) -> None:
     """Scaffold a new feature package under PATH/NAME."""
-    slug = slugify(name)
+    slug = slugify(name, separator='_')
     feature_dir = Path(path) / slug
 
     if feature_dir.exists():
