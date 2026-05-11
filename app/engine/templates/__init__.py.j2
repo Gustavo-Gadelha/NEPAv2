@@ -1,0 +1,10 @@
+from app.engine import Feature
+
+{% if with_routes %}from . import routes  # noqa: F401{% endif %}
+
+{{ name }} = Feature('{{ name }}', __name__, verbose_name='{{ verbose_name }}', url_prefix="{{ url_prefix }}")
+
+
+@{{ name }}.on_load
+def ready():
+    """Import anything that should be initialized after the models here"""

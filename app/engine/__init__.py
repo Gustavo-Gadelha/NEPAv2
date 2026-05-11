@@ -1,7 +1,7 @@
-from .config import FeatureConfig
+from .feature import Feature
 from .registry import FeatureRegistry
 
 __all__ = [
-    'FeatureConfig',
+    'Feature',
     'FeatureRegistry',
 ]
