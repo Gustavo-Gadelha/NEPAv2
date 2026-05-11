@@ -85,8 +85,10 @@ def create_feature(
         output_path.write_text(template.render(**context))
         click.echo(f'  Created {output_path}')
 
+    module_path = Path(path).as_posix().replace('/', '.').strip('.')
+
     click.echo(f"\nFeature '{slug}' created. Add it to INSTALLED_FEATURES:")
-    click.echo(f'  INSTALLED_FEATURES = [..., "app.features.{slug}"]')
+    click.echo(f'  INSTALLED_FEATURES = [..., "{module_path}.{slug}"]')
 
 
 @features_cli.command('list')
