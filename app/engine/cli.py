@@ -1,3 +1,4 @@
+import keyword
 import os
 from pathlib import Path
 from typing import TYPE_CHECKING
@@ -149,6 +150,12 @@ def check_features() -> None:
     for feature in registry.get_features():
         issues = []
 
+        if '-' in feature.name:
+            issues.append("feature name contains '-'")
+
+        if keyword.iskeyword(feature.name):
+            issues.append('feature name is a Python keyword')
+
         if not feature.models and Path(feature.root_path).joinpath('models.py').exists():
             issues.append('models.py exists but no models were registered')
 
@@ -161,4 +168,4 @@ def check_features() -> None:
             click.echo(f'{click.style(feature.name, fg="green")}  ok')
 
     if not ok:
-        click.echo('Fix these issues before running the application')
+        click.echo('\nFix these issues before running the application')
