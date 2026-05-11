@@ -20,7 +20,9 @@ class Config(BaseSettings):
 
     REDIS_URL: str
 
-    INSTALLED_FEATURES: list[str] = []
+    INSTALLED_FEATURES: list[str] = [
+        'app.features.healthcheck',
+    ]
 
     BASE_DIR: Path = Path(__file__).resolve().parent.parent.parent
     APP_DIR: Path = BASE_DIR / 'app'

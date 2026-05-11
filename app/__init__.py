@@ -3,7 +3,6 @@ from flask import Flask
 
 from app.conf import Config, get_settings
 from app.extensions import init_extensions
-from app.healthcheck import register_healthcheck
 from app.sentry import init_sentry
 
 load_dotenv()
@@ -21,6 +20,9 @@ def create_app(override_settings: Config | None = None):
     init_extensions(app)
     init_sentry(app)
 
-    register_healthcheck(app)
+    from app.extensions import registry
+
+    for feature in registry.get_features():
+        app.register_blueprint(feature)
 
     return app
