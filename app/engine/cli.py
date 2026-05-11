@@ -133,9 +133,7 @@ def list_models(feature_name: str | None) -> None:
             continue
         click.echo(f'{click.style(feature.name, fg="green")}')
         for model in models:
-            abstract = model.__dict__.get('__abstract__', False)
-            suffix = click.style('  abstract', fg='yellow') if abstract else ''
-            click.echo(f'  {model.__name__}{suffix}')
+            click.echo(f'  {model.__name__}')
             total += 1
 
     click.echo(f'\n{total} model(s) total.')
