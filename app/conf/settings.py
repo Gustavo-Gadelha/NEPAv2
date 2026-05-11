@@ -75,11 +75,7 @@ class Config(BaseSettings):
     RATELIMIT_STORAGE_URI: str = 'memory://'
     RATELIMIT_STRATEGY: str = 'fixed-window'
     RATELIMIT_HEADERS_ENABLED: bool = True
-    RATELIMIT_DEFAULT: list[str] = [
-        '3000 per day',
-        '300 per hour',
-        '30 per minute',
-    ]
+    RATELIMIT_DEFAULT: str = '3000 per day,300 per hour,30 per minute'
 
     SENTRY_DSN: str | None = None
     SENTRY_TRACE_SAMPLE_RATES: float = 0.1
