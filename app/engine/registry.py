@@ -70,7 +70,7 @@ class FeatureRegistry:
         if not candidates:
             raise RuntimeError(
                 f"Module '{module_path}' does not define a Feature instance. "
-                'Add `feature = Feature(__name__, __name__)` to its __init__.py.'
+                'Add `myfeature = Feature("myfeature", __name__)` to its __init__.py.'
             )
         if len(candidates) > 1:
             raise RuntimeError(
