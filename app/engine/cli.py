@@ -9,7 +9,7 @@ from jinja2 import Environment, PackageLoader, StrictUndefined
 from slugify import slugify
 
 if TYPE_CHECKING:
-    from app.engine import FeatureRegistry
+    from app.engine import Registry
 
 FEATURE_TEMPLATES = {
     '__init__.py.j2': '__init__.py',
@@ -18,7 +18,7 @@ FEATURE_TEMPLATES = {
 }
 
 
-def _get_registry() -> FeatureRegistry:
+def _get_registry() -> Registry:
     registry = current_app.extensions.get('registry')
     if registry is None:
         raise click.ClickException('No FeatureRegistry found. Is it registered on the app?')

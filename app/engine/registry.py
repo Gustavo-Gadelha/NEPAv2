@@ -8,7 +8,7 @@ from app.database import Model
 from app.engine.feature import Feature
 
 
-class FeatureRegistry:
+class Registry:
     def __init__(self, app: Flask | None = None, command: str = 'features') -> None:
         self._features: dict[str, Feature] = {}
         self._all_models: dict[str, dict[str, type]] = {}

@@ -8,11 +8,11 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_talisman import Talisman
 
 from app.database import Model
-from app.engine import FeatureRegistry
+from app.engine import Registry
 
 db = SQLAlchemy(model_class=Model, disable_autonaming=True)
 migrate = Migrate()
-registry = FeatureRegistry()
+registry = Registry()
 
 cors = CORS()
 talisman = Talisman()

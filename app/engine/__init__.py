@@ -1,7 +1,7 @@
 from .feature import Feature
-from .registry import FeatureRegistry
+from .registry import Registry
 
 __all__ = [
     'Feature',
-    'FeatureRegistry',
+    'Registry',
 ]

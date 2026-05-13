@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING
 from flask import Blueprint
 
 if TYPE_CHECKING:
-    from app.engine.registry import FeatureRegistry
+    from app.engine.registry import Registry
 
 
 class Feature(Blueprint):
@@ -23,7 +23,7 @@ class Feature(Blueprint):
         self.verbose_name = verbose_name or name.replace('_', ' ').title()
         self.models_module = models_module
         self.models: dict[str, type] = {}
-        self.registry: FeatureRegistry | None = None
+        self.registry: Registry | None = None
         self.ready = False
 
         self._on_load_callbacks: list[Callable] = []
