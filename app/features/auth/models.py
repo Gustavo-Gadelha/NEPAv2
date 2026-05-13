@@ -69,7 +69,7 @@ class User(db.Model):
     __tablename__ = 'user_accounts'
 
     email: Mapped[str] = mapped_column(db.String(255), unique=True, index=True)
-    username: Mapped[str | None] = mapped_column(db.String(64), unique=True, index=True)
+    username: Mapped[str] = mapped_column(db.String(64), unique=True, index=True)
     password: Mapped[str | None] = mapped_column(db.String(255))
     is_active: Mapped[bool] = mapped_column(db.Boolean, default=True)
 
@@ -103,6 +103,7 @@ class User(db.Model):
     )
 
     roles: Mapped[list[Role]] = relationship(secondary=user_roles, lazy='selectin')
+    object_permissions: Mapped[list[ObjectPermission]] = relationship(back_populates='user')
 
     @property
     def full_name(self) -> str:
