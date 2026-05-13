@@ -23,6 +23,7 @@ class Config(BaseSettings):
     INSTALLED_FEATURES: list[str] = [
         'app.features.healthcheck',
         'app.features.errors',
+        'app.features.auth',
     ]
 
     BASE_DIR: Path = Path(__file__).resolve().parent.parent.parent
