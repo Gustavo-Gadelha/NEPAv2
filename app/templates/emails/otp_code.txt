@@ -1,0 +1,11 @@
+Seu código de verificação
+
+Olá {{ user.full_name or user.email }},
+
+Seu código de verificação é:
+
+{{ code }}
+
+Este código expira em {{ expires_in_minutes }} minutos.
+
+Se você não tentou entrar na sua conta, recomendamos alterar sua senha imediatamente.

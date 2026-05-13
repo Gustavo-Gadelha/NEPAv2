@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR">
+  <body style="font-family: Arial, sans-serif; line-height: 1.6">
+    <div style="max-width: 600px; margin: 0 auto; padding: 24px">
+      <h2>Confirme seu e-mail</h2>
+
+      <p>Olá {{ user.full_name or user.email }},</p>
+
+      <p>
+        Por favor, confirme seu endereço de e-mail clicando no botão abaixo.
+      </p>
+
+      <p style="margin: 32px 0">
+        <a
+          href="{{ confirm_url }}"
+          style="
+            background-color: #111827;
+            color: #ffffff;
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            display: inline-block;
+          "
+        >
+          Confirmar E-mail
+        </a>
+      </p>
+
+      <p>Ou copie e cole o link abaixo no seu navegador:</p>
+
+      <p>
+        <a href="{{ confirm_url }}"> {{ confirm_url }} </a>
+      </p>
+
+      <p>
+        Se você não criou esta conta, pode ignorar este e-mail com segurança.
+      </p>
+    </div>
+  </body>
+</html>

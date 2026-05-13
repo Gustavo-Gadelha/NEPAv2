@@ -64,6 +64,9 @@ class Config(BaseSettings):
 
     MAIL_DEFAULT_SENDER: str = 'noreply@localhost'
 
+    MAIL_CONFIRM_URL: str = '/'
+    MAIL_RESET_PASSWORD_URL: str = '/'
+
     SESSION_COOKIE_SECURE: bool = False
     PREFERRED_URL_SCHEME: str = 'http'
 

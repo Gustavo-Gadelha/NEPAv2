@@ -1,0 +1,9 @@
+Confirme seu e-mail
+
+Olá {{ user.full_name or user.email }},
+
+Por favor, confirme seu endereço de e-mail acessando o link abaixo:
+
+{{ confirm_url }}
+
+Se você não criou esta conta, pode ignorar este e-mail com segurança.

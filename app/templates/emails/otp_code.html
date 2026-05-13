@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt-BR">
+<body style="font-family: Arial, sans-serif; line-height: 1.6;">
+<div style="max-width: 600px; margin: 0 auto; padding: 24px;">
+  <h2>Seu código de verificação</h2>
+
+  <p>
+    Olá {{ user.full_name or user.email }},
+  </p>
+
+  <p>
+    Utilize o código abaixo para continuar o acesso à sua conta:
+  </p>
+
+  <div
+      style="
+          margin: 32px 0;
+          padding: 16px;
+          background-color: #f3f4f6;
+          border-radius: 8px;
+          text-align: center;
+          font-size: 32px;
+          font-weight: bold;
+          letter-spacing: 8px;
+        "
+  >
+    {{ code }}
+  </div>
+
+  <p>
+    Este código expira em {{ expires_in_minutes }} minutos.
+  </p>
+
+  <p>
+    Se você não tentou entrar na sua conta, recomendamos alterar sua senha imediatamente.
+  </p>
+</div>
+</body>
+</html>
