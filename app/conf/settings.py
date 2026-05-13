@@ -29,9 +29,6 @@ class Config(BaseSettings):
     BASE_DIR: Path = Path(__file__).resolve().parent.parent.parent
     APP_DIR: Path = BASE_DIR / 'app'
     UPLOAD_DIR: Path = BASE_DIR / 'uploads'
-    INSTANCE_DIR: Path = BASE_DIR / 'instance'
-    STATIC_DIR: Path = BASE_DIR / 'static'
-    TEMPLATES_DIR: Path = BASE_DIR / 'templates'
 
     UPLOAD_ALLOWED_EXTENSIONS: set[str] = {
         'jpg',
@@ -87,9 +84,6 @@ class Config(BaseSettings):
 
     def ensure_dirs(self) -> None:
         self.UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
-        self.INSTANCE_DIR.mkdir(parents=True, exist_ok=True)
-        self.STATIC_DIR.mkdir(parents=True, exist_ok=True)
-        self.TEMPLATES_DIR.mkdir(parents=True, exist_ok=True)
 
 
 class DevelopmentConfig(Config):
