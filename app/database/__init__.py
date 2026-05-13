@@ -1,5 +1,5 @@
-from .models import Base
+from .models import Model
 
 __all__ = [
-    'Base',
+    'Model',
 ]

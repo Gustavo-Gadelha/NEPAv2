@@ -4,19 +4,17 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flask_mail import Mail
 from flask_migrate import Migrate
-from flask_seasurf import SeaSurf
 from flask_sqlalchemy import SQLAlchemy
 from flask_talisman import Talisman
 
-from app.database import Base
+from app.database import Model
 from app.engine import FeatureRegistry
 
-db = SQLAlchemy(model_class=Base, disable_autonaming=True)
+db = SQLAlchemy(model_class=Model, disable_autonaming=True)
 migrate = Migrate()
 registry = FeatureRegistry()
 
 cors = CORS()
-csrf = SeaSurf()
 talisman = Talisman()
 
 mail = Mail()
@@ -29,7 +27,6 @@ def init_extensions(app: Flask):
     registry.init_app(app)
 
     cors.init_app(app)
-    csrf.init_app(app)
     talisman.init_app(app, content_security_policy=False)
 
     mail.init_app(app)

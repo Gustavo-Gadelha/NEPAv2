@@ -4,9 +4,8 @@ from collections.abc import Iterator
 
 from flask import Flask
 
-from app.database import Base
-
-from .feature import Feature
+from app.database import Model
+from app.engine.feature import Feature
 
 
 class FeatureRegistry:
@@ -42,7 +41,7 @@ class FeatureRegistry:
             self._import_models(feature)
 
         # Phase 3 — walk SQLAlchemy's mapper registry and assign models
-        for mapper in Base.registry.mappers:
+        for mapper in Model.registry.mappers:
             self._register_model(mapper.class_)
 
         self.models_ready = True

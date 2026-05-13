@@ -1,10 +1,11 @@
 import uuid
+from typing import TYPE_CHECKING
 
 from sqlalchemy import UUID, MetaData
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
-class Base(DeclarativeBase):
+class Model(DeclarativeBase):
     # Naming convention to avoid alembic conflicts
     # https://docs.sqlalchemy.org/en/20/core/constraints.html#constraint-naming-conventions
     metadata = MetaData(
@@ -16,6 +17,9 @@ class Base(DeclarativeBase):
             'pk': 'pk_%(table_name)s',
         }
     )
+
+    if TYPE_CHECKING:
+        id: uuid.UUID
 
     # Does not support joined-table inheritance
     # In that case, subclasses must override `id` and define: ForeignKey(parent.id, primary_key=True)

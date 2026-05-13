@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING
 from flask import Blueprint
 
 if TYPE_CHECKING:
-    from .registry import FeatureRegistry
+    from app.engine.registry import FeatureRegistry
 
 
 class Feature(Blueprint):
