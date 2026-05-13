@@ -1,5 +1,5 @@
 from collections.abc import Sequence
-from typing import Any, TypeVar
+from typing import Any
 
 from flask import current_app
 from flask_sqlalchemy.session import Session
@@ -9,7 +9,6 @@ from sqlalchemy.sql import Select
 from werkzeug.local import LocalProxy
 
 db = LocalProxy(lambda: current_app.extensions['sqlalchemy'])
-T = TypeVar('T', bound=DeclarativeBase)
 
 
 @event.listens_for(Mapper, 'instrument_class')
