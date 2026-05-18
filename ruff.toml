@@ -1,6 +1,18 @@
 target-version = "py314"
 line-length = 120
 
+# Exclude common folders
+exclude = [
+    ".git",
+    ".venv",
+    "venv",
+    "__pycache__",
+    "migrations",
+    "build",
+    "dist",
+]
+
+[lint]
 select = [
     "E", # pycodestyle errors
     "F", # pyflakes
@@ -23,17 +35,6 @@ ignore = [
 
 # Allow unused variables that start with underscore
 dummy-variable-rgx = "^_.*"
-
-# Exclude common folders
-exclude = [
-    ".git",
-    ".venv",
-    "venv",
-    "__pycache__",
-    "migrations",
-    "build",
-    "dist",
-]
 
 [lint.isort]
 known-first-party = ["app"]
