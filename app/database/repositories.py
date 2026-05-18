@@ -2,13 +2,12 @@ from collections.abc import Sequence
 from typing import Any
 
 from flask import current_app
+from flask_sqlalchemy import SQLAlchemy
 from flask_sqlalchemy.session import Session
 from sqlalchemy import event, exists, func
 from sqlalchemy.orm import DeclarativeBase, Mapper
 from sqlalchemy.sql import Select
 from werkzeug.local import LocalProxy
-
-db = LocalProxy(lambda: current_app.extensions['sqlalchemy'])
 
 
 @event.listens_for(Mapper, 'instrument_class')
@@ -18,6 +17,7 @@ def attach_repositories(mapper, cls):
 
 
 class Repository[T: DeclarativeBase]:
+    db: LocalProxy[SQLAlchemy] = LocalProxy(lambda: current_app.extensions['sqlalchemy'])
     meta: type[T]
 
     def __init__(self, model: type[T]):
@@ -25,10 +25,10 @@ class Repository[T: DeclarativeBase]:
 
     @property
     def session(self) -> Session:
-        return db.session
+        return self.db.session
 
     def select(self) -> Select[Any]:
-        return db.select(self.model)
+        return self.db.select(self.model)
 
     def create(self, flush: bool = True, **kwargs) -> T:
         instance = self.model(**kwargs)
@@ -77,7 +77,7 @@ class Repository[T: DeclarativeBase]:
         return self.session.get(self.model, pk)
 
     def get_or_404(self, pk: Any) -> T:
-        return db.get_or_404(self.model, pk)
+        return self.db.get_or_404(self.model, pk)
 
     def one(self, **kwargs) -> T:
         stmt = self.select().filter_by(**kwargs)
@@ -104,7 +104,7 @@ class Repository[T: DeclarativeBase]:
         return self.session.scalars(stmt).all()
 
     def count(self, *criteria) -> int:
-        stmt = db.select(func.count()).select_from(self.model)
+        stmt = self.db.select(func.count()).select_from(self.model)
 
         if criteria:
             stmt = stmt.where(*criteria)
@@ -112,7 +112,7 @@ class Repository[T: DeclarativeBase]:
         return self.session.execute(stmt).scalar_one()
 
     def exists(self, **filters) -> bool:
-        stmt = db.select(exists(self.select().filter_by(**filters)))
+        stmt = self.db.select(exists(self.select().filter_by(**filters)))
         return bool(self.session.scalar(stmt))
 
     def paginate(self, page: int = 1, per_page: int = 20, *criteria, **filters) -> dict[str, Any]:
@@ -123,7 +123,7 @@ class Repository[T: DeclarativeBase]:
         if filters:
             stmt = stmt.filter_by(**filters)
 
-        pagination = db.paginate(stmt, page=page, per_page=per_page)
+        pagination = self.db.paginate(stmt, page=page, per_page=per_page)
 
         return {
             'items': pagination.items,
